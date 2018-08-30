@@ -1,0 +1,98 @@
+* Linemarks.el
+
+Linemarks.el leverages org-mode for bookmarks so you can:
+
+- Keep your bookmarks in org-mode
+- Organize them any way you want
+- Use *any* supported link type as a bookmark!
+- Use org-capture for new bookmarks.
+- Easily edit bookmarks by hand
+- Export to the web!
+
+* Installation
+
+** el-get
+#+begin_src emacs-lisp
+  (el-get-bundle linkmarks
+    :url "https://github.com/dustinlacewell/linkmarks.git"
+    :features linkmarks)
+#+end_src
+
+** straight.el
+#+begin_src emacs-lisp
+  (use-package linkmarks
+    :straight (linkmarks :type git :host github :repo "dustinlacewell/linkmarks")
+#+end_src
+
+* Configuration
+
+The only setting you need to configure is =linkmarks-file=:
+
+#+begin_src emacs-lisp
+  (setq linkmarks-file "~/org/bookmarks.org")
+#+end_src
+
+
+* Usage
+
+** linkmarks-capture
+
+To create a new bookmark, execute =M-x linkmarks-capture= or bind it to key of your
+choice. It will ask for a title, and then allow you to enter in the link data. The
+default template looks like this:
+
+#+begin_src text
+  * Bookmark Title
+  [[link content goes here]]
+    added: [2018-08-30 Thu 03:53]
+#+end_src
+
+Use =C-c C-w= to refile into your bookmarks!
+
+** linkmarks-select
+
+To select and visit a bookmark, execute =M-x linkmarks-select= or bind it to a key. It
+will prompt you with =completing-read= and visit your selection.
+
+* Examples
+
+** Files
+
+As usual, files can be linked to by simply specifying their path:
+
+#+begin_src text
+  * My Emacs Config
+  [[~/.emacs.d/init.el]]
+#+end_src
+
+*** Search within a file
+
+#+begin_src text
+  * First TODO
+  [[~/org/todo.org::TODO]]
+#+end_src
+
+*** Some heading in an org file
+
+#+begin_src text
+  * Foo Project
+  [[~/org/projects.org::*Foo]]
+#+end_src
+
+** Elisp
+
+You can have bookmarks that run arbitrary elisp!
+
+#+begin_src text
+  * Start Playlist
+  [[elisp:(start-playlist (completing-read "playlist" '("rock" "hiphop" "bluegrass")))]]
+#+end_src
+
+
+** Others
+
+There are many stock link types you can [[https://orgmode.org/manual/External-links.html][check out]].
+
+You can even [[https://orgmode.org/manual/Adding-hyperlink-types.html][make your own]]!
+
+
