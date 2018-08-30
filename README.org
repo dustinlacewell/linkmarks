@@ -54,6 +54,15 @@ Use =C-c C-w= to refile into your bookmarks!
 To select and visit a bookmark, execute =M-x linkmarks-select= or bind it to a key. It
 will prompt you with =completing-read= and visit your selection.
 
+* Bookmark File
+
+Your bookmark file is just a normal org-mode file. The way a bookmark is defined is
+simple enough: Any header followed by a link on the next line is a bookmark.
+
+You can nest bookmarks, you can have headings that are purely organizational, you can
+have additional notes or anything else. The only thing that matters are headings
+followed by an org-mode link.
+
 * Examples
 
 ** Files
@@ -79,6 +88,15 @@ As usual, files can be linked to by simply specifying their path:
   [[~/org/projects.org::*Foo]]
 #+end_src
 
+** Directories
+
+This is quite useful:
+
+#+begin_src text
+  ,* XDG config home
+  [[elisp:(helm-find-files-1 "~/.config/")]]
+#+end_src
+
 ** Elisp
 
 You can have bookmarks that run arbitrary elisp!
@@ -94,5 +112,3 @@ You can have bookmarks that run arbitrary elisp!
 There are many stock link types you can [[https://orgmode.org/manual/External-links.html][check out]].
 
 You can even [[https://orgmode.org/manual/Adding-hyperlink-types.html][make your own]]!
-
-
