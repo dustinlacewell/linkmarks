@@ -1,6 +1,6 @@
-* Linemarks.el
+* Linkmarks.el
 
-Linemarks.el leverages org-mode for bookmarks so you can:
+Linkmarks.el leverages org-mode for bookmarks so you can:
 
 - Keep your bookmarks in org-mode
 - Organize them any way you want
