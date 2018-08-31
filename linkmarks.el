@@ -68,9 +68,5 @@
     (linkmarks--setup)
     (org-capture)))
 
-(nougat-hydra hydra-bookmarks (:color blue)
-  ("Bookmarks" (("n" (linkmarks-capture) "new")
-                ("b" (linkmarks-select) "browse"))))
-
 (provide 'linkmarks)
 ;;; linkmarks.el ends here

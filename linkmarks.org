@@ -92,13 +92,6 @@
       (org-capture)))
 #+end_src
 
-*** hydra
-#+begin_src emacs-lisp
-  (nougat-hydra hydra-bookmarks (:color blue)
-    ("Bookmarks" (("n" (linkmarks-capture) "new")
-                  ("b" (linkmarks-select) "browse"))))
-#+end_src
-
 ** package epilogue
 #+begin_src emacs-lisp
   (provide 'linkmarks)
