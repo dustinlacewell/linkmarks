@@ -34,6 +34,8 @@
 
 
 (defun linkmarks--setup ()
+  "TODO: Write documentation."
+
   (setq org-outline-path-complete-in-steps nil)
   (setq org-link-frame-setup '((elisp . find-file)
                                (vm . vm-visit-folder-other-frame)
@@ -47,6 +49,8 @@
   (setq safe-local-variable-values '((org-confirm-elisp-link-function . nil))))
 
 (defun linkmarks--in-file ()
+  "TODO: Write documentation."
+
   (linkmarks--setup)
   (with-temp-buffer
     (insert-file-contents linkmarks-file t)
@@ -68,6 +72,8 @@
      collect (list (car target) content))))
 
 (defun linkmarks-select ()
+  "TODO: Write documentation."
+
   (interactive)
   (-let* ((targets (linkmarks--in-file))
           (choices (mapcar 'car targets))
@@ -76,6 +82,8 @@
     (org-open-link-from-string link)))
 
 (defun linkmarks-capture ()
+  "TODO: Write documentation."
+
   (interactive)
   (let ((org-capture-entry '("t" "Bookmark" entry (file "~/org/bookmarks.org")
                              "* %^{Title}\n[[%?]]\n  added: %U" '(:kill-buffer))))
