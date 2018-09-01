@@ -50,13 +50,13 @@
   (with-temp-buffer
     (insert-file-contents linkmarks-file t)
     (org-mode)
-    (beginning-of-buffer)
+    (goto-char (point-min))
     (outline-show-all)
     (cl-loop
      for target in (org-refile-get-targets)
      for element = (progn
                      (goto-char (nth 3 target))
-                     (next-line)
+                     (forward-line)
                      (org-element-context))
      for type = (car element)
      for props = (cadr element)
