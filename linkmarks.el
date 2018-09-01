@@ -1,12 +1,12 @@
-;;; -*- lexical-binding: t -*-
-;;; linkmarks.el --- Org-mode link based bookmarks
+;;; linkmarks.el --- Org-mode link based bookmarks -*- lexical-binding: t; -*-
+
 ;; Copyright (C) 2018 Dustin Lacewell
 
 ;; Author: Dustin Lacewell <dlacewell@gmail.com>
-;; Version: 0.1
+;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24") (helm "0") (dash "0")
-;; Keywords: hydra
-;; URL: http://github.com/dustinlacewell/hera
+;; Keywords: bookmarks, org
+;; URL: http://github.com/dustinlacewell/linkmarks
 
 ;;; Commentary:
 
@@ -17,7 +17,11 @@
 (require 'helm)
 (require 'dash)
 
+
+
 (setq linkmarks-file (expand-file-name "~/org/bookmarks.org"))
+
+
 
 (defun linkmarks--setup ()
   (setq org-outline-path-complete-in-steps nil)
@@ -68,5 +72,8 @@
     (linkmarks--setup)
     (org-capture)))
 
+
+
 (provide 'linkmarks)
+
 ;;; linkmarks.el ends here
