@@ -71,6 +71,7 @@
      if (equal 'link type)
      collect (list (car target) content))))
 
+;;;###autoload
 (defun linkmarks-select ()
   "TODO: Write documentation."
 
@@ -81,6 +82,7 @@
           ((_ link) (-first (lambda (i) (equal (car i) choice)) targets)))
     (org-open-link-from-string link)))
 
+;;;###autoload
 (defun linkmarks-capture ()
   "TODO: Write documentation."
 
