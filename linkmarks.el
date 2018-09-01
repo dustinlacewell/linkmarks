@@ -33,7 +33,7 @@
 
 
 
-(defun linkmarks--setup ()
+(cl-defun linkmarks--setup ()
   "TODO: Write documentation."
 
   (setq org-outline-path-complete-in-steps nil)
@@ -48,7 +48,7 @@
   (setq org-confirm-elisp-link-function nil)
   (setq safe-local-variable-values '((org-confirm-elisp-link-function . nil))))
 
-(defun linkmarks--in-file ()
+(cl-defun linkmarks--in-file ()
   "TODO: Write documentation."
 
   (linkmarks--setup)
@@ -72,7 +72,7 @@
      collect (list (car target) content))))
 
 ;;;###autoload
-(defun linkmarks-select ()
+(cl-defun linkmarks-select ()
   "TODO: Write documentation."
 
   (interactive)
@@ -83,7 +83,7 @@
     (org-open-link-from-string link)))
 
 ;;;###autoload
-(defun linkmarks-capture ()
+(cl-defun linkmarks-capture ()
   "TODO: Write documentation."
 
   (interactive)
