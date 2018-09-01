@@ -19,7 +19,16 @@
 
 
 
-(setq linkmarks-file (expand-file-name "~/org/bookmarks.org"))
+;;;###autoload
+(defgroup linkmarks nil
+  "Configuration options for linkmarks."
+  :group 'org)
+
+
+(defcustom linkmarks-file (expand-file-name "~/org/bookmarks.org")
+  "Define linkmarks file to store your bookmarks in."
+  :group 'linkmarks
+  :type 'string)
 
 
 
