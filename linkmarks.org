@@ -4,36 +4,49 @@
 :end:
 ** package prologue
 #+begin_src emacs-lisp
-  ;;; -*- lexical-binding: t -*-
-  ;;; linkmarks.el --- Org-mode link based bookmarks
+  ;;; linkmarks.el --- Org-mode link based bookmarks -*- lexical-binding: t; -*-
   ;; Copyright (C) 2018 Dustin Lacewell
 
   ;; Author: Dustin Lacewell <dlacewell@gmail.com>
-  ;; Version: 0.1
-  ;; Package-Requires: ((emacs "24") (helm "0") (dash "0")
-  ;; Keywords: hydra
-  ;; URL: http://github.com/dustinlacewell/hera
+  ;; Version: 0.1.0
+  ;; Package-Requires: ((emacs "24") (helm "0") (dash "0") (org "0"))
+  ;; Keywords: bookmarks, org, helm
+  ;; URL: http://github.com/dustinlacewell/linkmarks
 
   ;;; Commentary:
 
   ;; This package lets you use org-mode links as bookmarks.
 
   ;;; Code:
-  (require 'seq)
-  (require 'helm)
   (require 'dash)
+  (require 'helm)
+  (require 'org)
+  (require 'seq)
 #+end_src
 
 ** settings
+
+*** defgroup
+#+begin_src emacs-lisp
+  ;;;###autoload
+  (defgroup linkmarks nil
+    "Configuration options for linkmarks."
+    :group 'org)
+#+end_src
+
 *** linkmarks-file
 #+begin_src emacs-lisp
-  (setq linkmarks-file (expand-file-name "~/org/bookmarks.org"))
+  ;;;###autoload
+  (defcustom linkmarks-file (expand-file-name "~/org/bookmarks.org")
+    "Define linkmarks file to store your bookmarks in."
+    :group 'linkmarks
+    :type 'string)
 #+end_src
 
 ** boilerplate
 *** linkmarks--setup
 #+begin_src emacs-lisp
-  (defun linkmarks--setup ()
+  (cl-defun linkmarks--setup ()
     (setq org-outline-path-complete-in-steps nil)
     (setq org-link-frame-setup '((elisp . find-file)
                                  (vm . vm-visit-folder-other-frame)
@@ -49,18 +62,18 @@
 
 *** linkmarks--in-file
 #+begin_src emacs-lisp
-  (defun linkmarks--in-file ()
+  (cl-defun linkmarks--in-file ()
     (linkmarks--setup)
     (with-temp-buffer
       (insert-file-contents linkmarks-file t)
       (org-mode)
-      (beginning-of-buffer)
+      (goto-char (point-min))
       (outline-show-all)
       (cl-loop
        for target in (org-refile-get-targets)
        for element = (progn
                        (goto-char (nth 3 target))
-                       (next-line)
+                       (forward-line)
                        (org-element-context))
        for type = (car element)
        for props = (cadr element)
@@ -73,7 +86,8 @@
 
 *** linkmarks-select
 #+begin_src emacs-lisp
-  (defun linkmarks-select ()
+  ;;;###autoload
+  (cl-defun linkmarks-select ()
     (interactive)
     (-let* ((targets (linkmarks--in-file))
             (choices (mapcar 'car targets))
@@ -84,6 +98,7 @@
 
 *** linkmarks-capture
 #+begin_src emacs-lisp
+  ;;;###autoload
   (defun linkmarks-capture ()
     (interactive)
     (let ((org-capture-entry '("t" "Bookmark" entry (file "~/org/bookmarks.org")
@@ -95,6 +110,7 @@
 ** package epilogue
 #+begin_src emacs-lisp
   (provide 'linkmarks)
+
   ;;; linkmarks.el ends here
 #+end_src
 
