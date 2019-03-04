@@ -103,7 +103,7 @@
   (defun linkmarks-capture ()
     (interactive)
     (let ((org-capture-entry '("t" "Bookmark" entry (file "~/org/bookmarks.org")
-                               "* %^{Title}\n[[%?]]\n  added: %U" '(:kill-buffer))))
+                               "* %^{Title}\n[[%?]]\n  added: %U" :kill-buffer t)))
       (linkmarks--setup)
       (org-capture)))
 #+end_src

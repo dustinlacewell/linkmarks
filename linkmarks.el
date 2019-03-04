@@ -12,6 +12,7 @@
 ;; This package lets you use org-mode links as bookmarks.
 
 ;;; Code:
+(require 'cl-lib)
 (require 'dash)
 (require 'helm)
 (require 'org)
@@ -75,7 +76,7 @@
 (defun linkmarks-capture ()
   (interactive)
   (let ((org-capture-entry '("t" "Bookmark" entry (file "~/org/bookmarks.org")
-                             "* %^{Title}\n[[%?]]\n  added: %U" '(:kill-buffer))))
+                             "* %^{Title}\n[[%?]]\n  added: %U" :kill-buffer t)))
     (linkmarks--setup)
     (org-capture)))
 
