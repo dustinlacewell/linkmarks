@@ -68,15 +68,15 @@
   (interactive)
   (-let* ((targets (linkmarks--in-file))
           (choices (mapcar 'car targets))
-          (choice (completing-read "Bookmark" choices))
+          (choice (completing-read "Bookmark: " choices))
           ((_ link) (-first (lambda (i) (equal (car i) choice)) targets)))
     (org-open-link-from-string link)))
 
 ;;;###autoload
 (defun linkmarks-capture ()
   (interactive)
-  (let ((org-capture-entry '("t" "Bookmark" entry (file "~/org/bookmarks.org")
-                             "* %^{Title}\n[[%?]]\n  added: %U" :kill-buffer t)))
+  (let ((org-capture-templates '(("t" "Bookmark" entry (file linkmarks-file)
+                             "* %^{Title}\n[[%?]]\n  added: %U" :kill-buffer t))))
     (linkmarks--setup)
     (org-capture)))
 
