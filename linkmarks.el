@@ -14,7 +14,6 @@
 ;;; Code:
 (require 'cl-lib)
 (require 'dash)
-(require 'helm)
 (require 'org)
 (require 'seq)
 
