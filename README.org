@@ -21,7 +21,7 @@ Linkmarks.el leverages org-mode for bookmarks so you can:
 ** straight.el
 #+begin_src emacs-lisp
   (use-package linkmarks
-    :straight (linkmarks :type git :host github :repo "dustinlacewell/linkmarks")
+    :straight (linkmarks :type git :host github :repo "dustinlacewell/linkmarks"))
 #+end_src
 
 * Configuration
