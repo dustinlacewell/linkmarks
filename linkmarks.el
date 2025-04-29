@@ -3,8 +3,8 @@
 
 ;; Author: Dustin Lacewell <dlacewell@gmail.com>
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "24") (helm "0") (dash "0") (org "0"))
-;; Keywords: bookmarks, org, helm
+;; Package-Requires: ((emacs "24") (dash "0") (org "0"))
+;; Keywords: bookmarks, org
 ;; URL: http://github.com/dustinlacewell/linkmarks
 
 ;;; Commentary:
